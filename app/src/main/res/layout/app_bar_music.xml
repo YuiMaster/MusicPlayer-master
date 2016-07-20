@@ -8,6 +8,7 @@
     tools:context="com.scout.musicplayer.MusicActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -21,6 +22,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <!--  -->
     <include layout="@layout/content_music" />
 
     <android.support.design.widget.FloatingActionButton
