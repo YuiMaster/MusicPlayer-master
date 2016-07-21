@@ -2,16 +2,35 @@ package com.scout.musicplayer;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.scout.musicplayer.Adapter.FragmentAdapter;
+import com.scout.musicplayer.fragments.LocalMusicFragment;
+import com.scout.musicplayer.fragments.NetMusicListFragment;
+import com.scout.musicplayer.fragments.PlayFragment;
+
+/*
+* 音乐播放器基本素质
+* 扫描本地音乐  scanNativeMusic
+* 避免播放器内存被系统回收
+* 来电或拔出耳机时暂停播放
+* 捕捉或丢弃音乐焦点
+* 耳机线控
+* */
+
 public class MusicActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ViewPager mViewPager;
+    private LocalMusicFragment mLocalMusicFragment;
+    private PlayFragment mPlayFragment;
+    private NetMusicListFragment mNetMusicListFragment;
 
 
     @Override
@@ -26,6 +45,16 @@ public class MusicActivity extends BaseActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
+
+
+        mLocalMusicFragment = new LocalMusicFragment();
+        mNetMusicListFragment = new NetMusicListFragment();
+        FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
+        adapter.addFragment((Fragment) mLocalMusicFragment);
+        adapter.addFragment((Fragment) mNetMusicListFragment);
+//        adapter.addFragment((Fragment) mNetMusicListFragment);
+
+        mViewPager.setAdapter(adapter);
     }
 
     @Override
