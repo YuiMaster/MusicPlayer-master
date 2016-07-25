@@ -1,5 +1,6 @@
 package com.scout.musicplayer;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.WindowManager;
  * Created by liaoyuhuan on 2016/7/20.
  */
 public abstract class BaseActivity extends AppCompatActivity {
+    private static final String TAG = "BaseActivity";
 
     protected abstract void initVariable();
 
@@ -22,7 +24,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        LOG.i(TAG, "onCreate ");
         initVariable();
         initView(savedInstanceState);
         setSystemBarTransparent();

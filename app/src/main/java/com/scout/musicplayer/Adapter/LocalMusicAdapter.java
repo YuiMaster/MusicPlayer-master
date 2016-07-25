@@ -20,7 +20,7 @@ import java.util.List;
 public class LocalMusicAdapter extends BaseAdapter {
     private static final String TAG = "LocalMusicAdapter";
 
-    private List<MusicInfo> sMusicList = new ArrayList<>();
+    private List<MusicInfo> sMusicList;
 
     public void updateMusicList(List<MusicInfo> list){
         LOG.i(TAG, "updateMusicList ");
@@ -70,11 +70,7 @@ public class LocalMusicAdapter extends BaseAdapter {
 
         LOG.i(TAG, "holder.tvTitle.setText "+music.title);
         holder.tvTitle.setText(music.title);
-
-
 //        holder.ivCover.setImageBitmap(music.coverUri);
-
-
         return convertView;
     }
 

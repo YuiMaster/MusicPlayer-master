@@ -1,5 +1,6 @@
 package com.scout.musicplayer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -34,15 +35,19 @@ public class MusicActivity extends BaseActivity
 
     private List<MusicInfo> sMusicList = new ArrayList<>();
 
+    public List<MusicInfo> getLocalMusicList() {
+        return sMusicList;
+    }
+
     @Override
     protected void initVariable() {
-        LOG.i(TAG,"initVariable ");
+        LOG.i(TAG, "initVariable ");
 
     }
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        LOG.i(TAG,"initView ");
+        LOG.i(TAG, "initView ");
         setContentView(R.layout.activity_music);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -59,16 +64,15 @@ public class MusicActivity extends BaseActivity
     }
 
 
-
     @Override
     protected void loadData() {
-        LOG.i(TAG,"loadData ");
+        LOG.i(TAG, "loadData ");
         scanLocalMusic();
     }
 
     @Override
     public void onBackPressed() {
-        LOG.i(TAG,"onBackPressed ");
+        LOG.i(TAG, "onBackPressed ");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -79,7 +83,7 @@ public class MusicActivity extends BaseActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        LOG.i(TAG,"onCreateOptionsMenu ");
+        LOG.i(TAG, "onCreateOptionsMenu ");
         getMenuInflater().inflate(R.menu.music, menu);
         return true;
     }
@@ -88,7 +92,7 @@ public class MusicActivity extends BaseActivity
     //    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        LOG.i(TAG,"onNavigationItemSelected ");
+        LOG.i(TAG, "onNavigationItemSelected ");
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -108,8 +112,34 @@ public class MusicActivity extends BaseActivity
     }
 
     protected void scanLocalMusic() {
-        LOG.i(TAG,"scanLocalMusic ");
+        LOG.i(TAG, "scanLocalMusic ");
+
         MusicUtils.scanMusic(this, sMusicList);
-        mLocalMusicFragment.updateMusicList(sMusicList);
+        LOG.i(TAG, "scanLocalMusic " + sMusicList.toString());
+    }
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        LOG.i(TAG, "onNewIntent ");
+        super.onNewIntent(intent);
+    }
+
+    @Override
+    protected void onRestart() {
+        LOG.i(TAG, "onRestart ");
+        super.onRestart();
+    }
+
+    @Override
+    protected void onPause() {
+        LOG.i(TAG, "onPause ");
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        LOG.i(TAG, "onResume ");
+        super.onResume();
     }
 }

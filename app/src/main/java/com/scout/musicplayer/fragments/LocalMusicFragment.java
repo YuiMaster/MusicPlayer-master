@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.scout.musicplayer.Adapter.LocalMusicAdapter;
 import com.scout.musicplayer.LOG;
+import com.scout.musicplayer.MusicActivity;
 import com.scout.musicplayer.R;
 import com.scout.musicplayer.service.MusicInfo;
 
@@ -27,13 +28,6 @@ public class LocalMusicFragment extends BaseFragment {
     private LocalMusicAdapter mAdapter;
     private ListView mListView;
 
-    public void updateMusicList(List<MusicInfo> list) {
-        LOG.i(TAG, "updateMusicList "+list.toString());
-        sMusicList = list;
-        if (mAdapter != null)
-            mAdapter.notifyDataSetChanged();
-    }
-
     @Override
     public void onAttach(Context context) {
         LOG.i(TAG, "onAttach ");
@@ -45,23 +39,24 @@ public class LocalMusicFragment extends BaseFragment {
         LOG.i(TAG, "onCreateView ");
 
         return inflater.inflate(R.layout.fragment_localmusic, container, false);
-//        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        LOG.i(TAG, "onViewCreated ");
-        mListView = (ListView)view.findViewById(R.id.listView);
+        LOG.i(TAG, "onViewCreated mAdapter=" + mAdapter);
+        mListView = (ListView) view.findViewById(R.id.listView);
+        sMusicList = ((MusicActivity) this.getActivity()).getLocalMusicList();
         mAdapter = new LocalMusicAdapter();
         mAdapter.updateMusicList(sMusicList);
         mListView.setAdapter(mAdapter);
+        LOG.i(TAG, "onViewCreated mAdapter=" + mAdapter + sMusicList.toString());
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        LOG.i(TAG, "onActivityCreated "+sMusicList.toString());
+        LOG.i(TAG, "onActivityCreated " + sMusicList.toString());
         super.onActivityCreated(savedInstanceState);
     }
 
