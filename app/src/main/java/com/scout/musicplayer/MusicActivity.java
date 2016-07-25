@@ -11,8 +11,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.scout.musicplayer.Adapter.FragmentAdapter;
+import com.scout.musicplayer.activity.ExitActivity;
 import com.scout.musicplayer.fragments.LocalMusicFragment;
 import com.scout.musicplayer.fragments.NetMusicListFragment;
 import com.scout.musicplayer.fragments.PlayFragment;
@@ -92,14 +94,16 @@ public class MusicActivity extends BaseActivity
     //    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        LOG.i(TAG, "onNavigationItemSelected ");
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        LOG.i(TAG, "onNavigationItemSelected " + id);
 
         if (id == R.id.nav_settings) {
-
         } else if (id == R.id.nav_exit) {
-
+            Intent intent = new Intent(this, ExitActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            this.startActivity(intent);
+            this.finish();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
