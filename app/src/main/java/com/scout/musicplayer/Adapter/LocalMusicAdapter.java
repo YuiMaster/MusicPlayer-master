@@ -1,4 +1,4 @@
-package com.scout.musicplayer.Adapter;
+package com.scout.musicplayer.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +12,6 @@ import com.scout.musicplayer.R;
 import com.scout.musicplayer.service.MusicInfo;
 import com.scout.musicplayer.utils.MusicCoverLoader;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

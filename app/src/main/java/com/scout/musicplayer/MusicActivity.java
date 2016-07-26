@@ -4,16 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
-import com.scout.musicplayer.Adapter.FragmentAdapter;
+import com.scout.musicplayer.adapter.FragmentAdapter;
 import com.scout.musicplayer.activity.ExitActivity;
 import com.scout.musicplayer.fragments.LocalMusicFragment;
 import com.scout.musicplayer.fragments.NetMusicListFragment;

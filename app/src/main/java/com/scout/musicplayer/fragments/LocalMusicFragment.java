@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.scout.musicplayer.Adapter.LocalMusicAdapter;
+import com.scout.musicplayer.adapter.LocalMusicAdapter;
 import com.scout.musicplayer.LOG;
 import com.scout.musicplayer.MusicActivity;
 import com.scout.musicplayer.R;

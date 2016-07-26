@@ -1,4 +1,4 @@
-package com.scout.musicplayer.Adapter;
+package com.scout.musicplayer.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
