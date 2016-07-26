@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 
 import com.scout.musicplayer.LOG;
+import com.scout.musicplayer.utils.MusicCoverLoader;
 
 import java.util.List;
 
@@ -58,6 +59,7 @@ public class MusicUtils {
             music.year = year;
             music.coverUri = coverUri;
             musicList.add(music);
+            MusicCoverLoader.getInstance().loadThumbnail(coverUri);
             LOG.i(TAG,"scanMusic musicList.add(music)");
         }
 

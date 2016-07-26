@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.scout.musicplayer.LOG;
 import com.scout.musicplayer.R;
 import com.scout.musicplayer.service.MusicInfo;
+import com.scout.musicplayer.utils.MusicCoverLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,16 +62,10 @@ public class LocalMusicAdapter extends BaseAdapter {
         //update ViewHolderInfos
         final MusicInfo music = sMusicList.get(position);
 
-        View vPlaying;
-        ImageView ivCover;
-        TextView tvTitle;
-        TextView tvArtist;
-        ImageView ivMore;
-        View vDivider;
-
         LOG.i(TAG, "holder.tvTitle.setText "+music.title);
+        holder.tvArtist.setText(music.artist);
         holder.tvTitle.setText(music.title);
-//        holder.ivCover.setImageBitmap(music.coverUri);
+        holder.ivCover.setImageBitmap(MusicCoverLoader.getInstance().loadThumbnail(music.coverUri));
         return convertView;
     }
 
