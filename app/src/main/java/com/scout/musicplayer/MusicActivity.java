@@ -1,14 +1,19 @@
 package com.scout.musicplayer;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.scout.musicplayer.adapter.FragmentAdapter;
 import com.scout.musicplayer.activity.ExitActivity;
@@ -20,6 +25,9 @@ import com.scout.musicplayer.service.MusicUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+
+import rx.functions.Action1;
 
 
 public class MusicActivity extends BaseActivity
@@ -41,7 +49,7 @@ public class MusicActivity extends BaseActivity
     @Override
     protected void initVariable() {
         LOG.i(TAG, "initVariable ");
-
+//        checkSelfPermission();
     }
 
     @Override
@@ -60,6 +68,7 @@ public class MusicActivity extends BaseActivity
         adapter.addFragment((Fragment) mNetMusicListFragment);
 
         mViewPager.setAdapter(adapter);
+        testRx();
     }
 
 
@@ -143,4 +152,49 @@ public class MusicActivity extends BaseActivity
         LOG.i(TAG, "onResume ");
         super.onResume();
     }
+    RxBus rxBus;
+    private  void testRx(){
+        LOG.i(TAG, "testRx ");
+
+        rxBus = new RxBus();
+        rxBus.send(new String("asdf"));
+        rxBus.toObserverable().subscribe(new Action1() {
+            @Override
+            public void call(Object o) {
+                LOG.i(TAG, "call ");
+                show("asdf");
+            }
+        });
+    }
+
+    private void show(String buf){
+        Toast.makeText(this,buf,Toast.LENGTH_SHORT).show();
+    }
+
+//
+//    private static final int CODE_FOR_WRITE_PERMISSION = 1000;
+//
+//    protected void checkSelfPermission() {
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+//                != PackageManager.PERMISSION_GRANTED) {
+//            //申请WRITE_EXTERNAL_STORAGE权限
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+//                    CODE_FOR_WRITE_PERMISSION);
+//        }
+//    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+//        LOG.i(TAG, "onRequestPermissionsResult ");
+//        if (requestCode == CODE_FOR_WRITE_PERMISSION) {
+//            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                scanLocalMusic();
+//            } else {
+//                LOG.i(TAG, "finish ");
+////                finish();
+//            }
+//        }
+//    }
+
+
 }

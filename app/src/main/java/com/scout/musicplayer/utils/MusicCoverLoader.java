@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.util.LruCache;
 
+import com.scout.musicplayer.LOG;
 import com.scout.musicplayer.MusicApplication;
 import com.scout.musicplayer.R;
 
@@ -13,6 +14,7 @@ import com.scout.musicplayer.R;
  * 用时加载的单例模式
  */
 public class MusicCoverLoader {
+    private static final String TAG = "MusicCoverLoader";
     LruCache<String, Bitmap> mLruCover;
 
     private MusicCoverLoader() {
@@ -48,7 +50,9 @@ public class MusicCoverLoader {
         } else {
             bitmap = mLruCover.get(url);
             if (bitmap == null) {
-                bitmap = createBitmapByUri(url);
+                bitmap = BitmapFactory.decodeResource(MusicApplication.getInstance().getResources(), R.drawable.default_cover);
+//                bitmap = createBitmapByUri(url);
+                LOG.i(TAG, "createBitmapByUri KEY_NULL bitmap="+bitmap);
                 mLruCover.put(KEY_NULL, bitmap);
             }
         }

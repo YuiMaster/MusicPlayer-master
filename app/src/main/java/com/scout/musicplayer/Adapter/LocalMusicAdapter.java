@@ -61,7 +61,7 @@ public class LocalMusicAdapter extends BaseAdapter {
         //update ViewHolderInfos
         final MusicInfo music = sMusicList.get(position);
 
-        LOG.i(TAG, "holder.tvTitle.setText "+music.title);
+        LOG.i(TAG, "holder.tvTitle.setText "+music.title+ " cover "+music.coverUri);
         holder.tvArtist.setText(music.artist);
         holder.tvTitle.setText(music.title);
         holder.ivCover.setImageBitmap(MusicCoverLoader.getInstance().loadThumbnail(music.coverUri));
